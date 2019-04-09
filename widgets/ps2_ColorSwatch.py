@@ -22,12 +22,6 @@ class ColorSwatch(QtWidgets.QPushButton):
     def color(self):
         return self._color
 
-    @color.setter
-    def color(self, value):
-        if type(value) == QtGui.QColor:
-            self._color = value
-            self.setStyleSheet('QPushButton { background-color: %s; border: 0; }' % self.color.name())
-
     @property
     def color_name(self):
         return self._color_name
