@@ -41,13 +41,18 @@ class RenameList(QtWidgets.QWidget):
         return self.list_box.items()
 
     def list_index_changed(self, new_index):
-        self.rename_view.setText(self.list_box.item(new_index).data(Qt.DisplayRole))
+        try:
+            self.rename_view.setText(self.list_box.item(new_index).data(Qt.DisplayRole))
+        except AttributeError:
+            pass
 
     def rename_editing_finished(self):
         if not self.expandable and self.rename_view.text() == '':
             return
-
-        self.list_box.currentItem().setData(Qt.DisplayRole, self.rename_view.text())
+        try:
+            self.list_box.currentItem().setData(Qt.DisplayRole, self.rename_view.text())
+        except AttributeError:
+            pass
 
     def item_changed(self, new_item):
         items_to_remove = []
