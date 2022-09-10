@@ -37,7 +37,6 @@ class RenameList(QtWidgets.QWidget):
 
     @property
     def items(self):
-        print(self.list_box.items())
         return self.list_box.items()
 
     def list_index_changed(self, new_index):

@@ -1,5 +1,5 @@
 from PySide2 import QtWidgets, QtGui
-from PySide2.QtCore import SIGNAL, Signal
+from PySide2.QtCore import Signal, QStringListModel
 
 
 class FillListButton(QtWidgets.QWidget):
@@ -14,7 +14,7 @@ class FillListButton(QtWidgets.QWidget):
         super(FillListButton, self).__init__(*args, **kwargs)
 
         self.layout = QtWidgets.QHBoxLayout()
-        self.list_model = QtGui.QStringListModel()
+        self.list_model = QStringListModel()
         self.list = QtWidgets.QListView()
 
         self.list.setModel(self.list_model)
@@ -34,21 +34,21 @@ class FillListButton(QtWidgets.QWidget):
         return self.list_model.stringList()
 
     @list_text.setter
-    def list_text(self, value):
-        if isinstance(value, list):
-            self.list_model.setStringList(value)
+    def list_text(self, value: list[str]):
+        self.list_model.setStringList(value)
+
+    def add_value_to_list(self, value: str):
+        str_list = self.list_text
+        str_list.append(value)
+        self.list_text = str_list
 
     def on_clicked(self):
-        self.emit(SIGNAL('clicked()'))
+        self.clicked.emit()
 
 
 """
-Demostration:
+Demonstrations:
 
-        self.fill_button = fill_list_button.FillListButton()
-        self.fill_button.clicked.connect(self.fill_button_def)
-        
-        def fill_button_def(self):
-            self.fill_button.list_text = ['01', '02', '03']
-        
+        self.rename_box = ps2_RenameList.RenameList(starting_list=['This', 'Is', 'Rename', 'List'], expandable=True)
+        rename_box_items = self.rename_box.items
 """
