@@ -11,6 +11,7 @@ import ps2_RenameList
 import ps2_TristateCheckbox
 import ps2_Rollout
 import ps2_ColorSwatch
+import ps2_EditableTextBoxLabel
 import sys
 
 
@@ -142,6 +143,13 @@ class Demo(QtWidgets.QDialog):
         row += 1
 
         row = self.add_separator_row(grid_layout, row)
+
+        # Editable Text Box Label
+        etb_widget = ps2_EditableTextBoxLabel.EditableTextBoxLabel('Label Text: ')
+        etb_label = QtWidgets.QLabel('Editable Text Box Label:')
+        grid_layout.addWidget(etb_label, row, 0)
+        grid_layout.addWidget(etb_widget, row, 1)
+        row += 1
 
         main_layout.addLayout(grid_layout)
         self.setLayout(main_layout)
