@@ -1,7 +1,7 @@
 from PySide2 import QtWidgets, QtCore
 
 
-class EditableTextBoxLabel(QtWidgets.QWidget):
+class LabelWithValue(QtWidgets.QWidget):
     """
     Creates a label with a value label next to it with an optional stylesheet on the value
     """
