@@ -13,6 +13,7 @@ import ps2_Rollout
 import ps2_ColorSwatch
 import ps2_EditableTextBoxLabel
 import ps2_LabelWithValue
+import ps2_LabelWithSpinbox
 import sys
 
 
@@ -153,10 +154,26 @@ class Demo(QtWidgets.QDialog):
         row += 1
 
         # Label with Value
-        lwv_widget = ps2_LabelWithValue.EditableTextBoxLabel('Label: ', 'Value', value_stylesheet="font-weight: bold")
+        lwv_widget = ps2_LabelWithValue.LabelWithValue('Label: ', 'Value', value_stylesheet="font-weight: bold")
         lwv_label = QtWidgets.QLabel('Label With Value:')
         grid_layout.addWidget(lwv_label, row, 0)
         grid_layout.addWidget(lwv_widget, row, 1)
+        row += 1
+
+        # Label with Spinbox
+        lwsb_widget = ps2_LabelWithSpinbox.LabelWithSpinbox('Label: ', 5)
+        lwsb_label = QtWidgets.QLabel('Label With Spinbox:')
+        grid_layout.addWidget(lwsb_label, row, 0)
+        grid_layout.addWidget(lwsb_widget, row, 1)
+        row += 1
+
+        # Label with Integer Spinbox
+        lwisb_widget = ps2_LabelWithSpinbox.LabelWithSpinbox('Label: ', 5)
+        lwisb_widget.value_widget.setDecimals(0)
+        lwisb_widget.value_widget.setRange(-10, 10)
+        lwisb_label = QtWidgets.QLabel('Label With Integer Spinbox:')
+        grid_layout.addWidget(lwisb_label, row, 0)
+        grid_layout.addWidget(lwisb_widget, row, 1)
         row += 1
 
         main_layout.addLayout(grid_layout)
