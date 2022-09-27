@@ -12,6 +12,7 @@ import ps2_TristateCheckbox
 import ps2_Rollout
 import ps2_ColorSwatch
 import ps2_EditableTextBoxLabel
+import ps2_LabelWithValue
 import sys
 
 
@@ -149,6 +150,13 @@ class Demo(QtWidgets.QDialog):
         etb_label = QtWidgets.QLabel('Editable Text Box Label:')
         grid_layout.addWidget(etb_label, row, 0)
         grid_layout.addWidget(etb_widget, row, 1)
+        row += 1
+
+        # Label with Value
+        lwv_widget = ps2_LabelWithValue.EditableTextBoxLabel('Label: ', 'Value', value_stylesheet="font-weight: bold")
+        lwv_label = QtWidgets.QLabel('Label With Value:')
+        grid_layout.addWidget(lwv_label, row, 0)
+        grid_layout.addWidget(lwv_widget, row, 1)
         row += 1
 
         main_layout.addLayout(grid_layout)
