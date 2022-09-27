@@ -8,7 +8,7 @@ class LabelWithValue(QtWidgets.QWidget):
 
 
     def __init__(self, label_text: str, value_text: str, *args, value_stylesheet: str = '', **kwargs):
-        super(EditableTextBoxLabel, self).__init__(*args, **kwargs)
+        super(LabelWithValue, self).__init__(*args, **kwargs)
 
         self.main_layout = QtWidgets.QHBoxLayout()
         self.main_layout.setAlignment(QtCore.Qt.AlignLeft)
