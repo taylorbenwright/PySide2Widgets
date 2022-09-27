@@ -14,6 +14,7 @@ import ps2_ColorSwatch
 import ps2_EditableTextBoxLabel
 import ps2_LabelWithValue
 import ps2_LabelWithSpinbox
+import ps2_LabelWithComboBox
 import sys
 
 
@@ -29,6 +30,7 @@ class Demo(QtWidgets.QDialog):
 
     def generate_ui(self):
         main_layout = QtWidgets.QVBoxLayout()
+        scroll_area = QtWidgets.QScrollArea()
         grid_layout = QtWidgets.QGridLayout()
 
         row = 0
@@ -162,6 +164,7 @@ class Demo(QtWidgets.QDialog):
 
         # Label with Spinbox
         lwsb_widget = ps2_LabelWithSpinbox.LabelWithSpinbox('Label: ', 5)
+        lwsb_widget.value_changed.connect(lambda x: print(x))
         lwsb_label = QtWidgets.QLabel('Label With Spinbox:')
         grid_layout.addWidget(lwsb_label, row, 0)
         grid_layout.addWidget(lwsb_widget, row, 1)
@@ -176,7 +179,19 @@ class Demo(QtWidgets.QDialog):
         grid_layout.addWidget(lwisb_widget, row, 1)
         row += 1
 
-        main_layout.addLayout(grid_layout)
+        # Label with ComboBox
+        lwcb_widget = ps2_LabelWithComboBox.LabelWithComboBox('Label: ', ['Hello', 'This', 'Is', 'A', 'List'])
+        lwcb_widget.index_changed.connect(lambda x, y: print("Ind: {}, Val: {}".format(x, y)))
+        lwcb_label = QtWidgets.QLabel('Label With ComboBox:')
+        grid_layout.addWidget(lwcb_label, row, 0)
+        grid_layout.addWidget(lwcb_widget, row, 1)
+        row += 1
+
+        # main_layout.addLayout(grid_layout)
+        main_widget = QtWidgets.QWidget()
+        main_widget.setLayout(grid_layout)
+        scroll_area.setWidget(main_widget)
+        main_layout.addWidget(scroll_area)
         self.setLayout(main_layout)
 
     @staticmethod
