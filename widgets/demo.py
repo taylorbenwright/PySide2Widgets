@@ -15,6 +15,7 @@ import ps2_EditableTextBoxLabel
 import ps2_LabelWithValue
 import ps2_LabelWithSpinbox
 import ps2_LabelWithComboBox
+import ps2_LabelWithCheckbox
 import sys
 
 
@@ -186,6 +187,15 @@ class Demo(QtWidgets.QDialog):
         grid_layout.addWidget(lwcb_label, row, 0)
         grid_layout.addWidget(lwcb_widget, row, 1)
         row += 1
+
+        # Label with Checkbox
+        lwcbx_widget = ps2_LabelWithCheckbox.LabelWithCheckbox('Label: ', True)
+        lwcbx_widget.value_changed.connect(lambda x: print("Is Checked: {}".format(x)))
+        lwcbx_label = QtWidgets.QLabel('Label With Checkbox:')
+        grid_layout.addWidget(lwcbx_label, row, 0)
+        grid_layout.addWidget(lwcbx_widget, row, 1)
+        row += 1
+
 
         # main_layout.addLayout(grid_layout)
         main_widget = QtWidgets.QWidget()
